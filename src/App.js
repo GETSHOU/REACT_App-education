@@ -1,5 +1,7 @@
+// декларативный стиль - начало
 import logo from './logo.svg';
 import './App.css';
+import { CurrentDateComponent } from './components/CurrentDateComponent';
 
 export const App = () => {
 	return (
@@ -17,7 +19,9 @@ export const App = () => {
 				>
 					Learn React
 				</a>
+				<CurrentDateComponent />
 			</header>
 		</div>
 	);
 };
+// декларативный стиль - конец
