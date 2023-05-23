@@ -1,0 +1,169 @@
+.calculator {
+	display: flex;
+	flex-direction: column;
+	width: 340px;
+	border-radius: 1rem;
+	box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.2);
+}
+
+.innerWrapper {
+	display: flex;
+	flex-direction: column;
+}
+
+.screen {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 1rem;
+	padding-bottom: 0.5rem;
+	border-radius: 1rem 1rem 0 0;
+	background: rgba(0, 0, 0, 0.4);
+	transition: all, 0.3s ease;
+}
+
+.screenActive {
+	background: rgba(0, 0, 0, 0.7);
+	transition: all, 0.3s ease;
+}
+
+.fieldValue {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	height: 3.5rem;
+	width: 90%;
+	font-size: 3rem;
+	color: #ffffff;
+	user-select: none;
+	overflow: hidden;
+}
+
+/* .fieldValueCalc {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	height: 2rem;
+	padding: 3px 10px;
+	font-size: 1.2rem;
+	color: #a8a8a8;
+	user-select: none;
+} */
+
+.workspace {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-areas:
+		'button_1 button_2 button_3 button_4'
+		'button_5 button_6 button_7 button_8'
+		'button_9 button_10 button_11 button_12'
+		'. button_13 . button_14';
+	gap: 10px;
+	padding: 25px;
+	border-radius: 0 0 1rem 1rem;
+	background: rgba(0, 0, 0, 0.7);
+}
+
+.workspaceButton {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	justify-self: center;
+	align-self: center;
+	height: 65px;
+	width: 65px;
+	padding: 10px;
+	background: #525252;
+	border-radius: 3px;
+	transition: all 0.3s ease;
+	font-size: 1.5rem;
+	user-select: none;
+	color: #ffffff;
+}
+
+.workspaceButton:nth-child(1) {
+	grid-area: button_1;
+}
+.workspaceButton:nth-child(2) {
+	grid-area: button_2;
+}
+.workspaceButton:nth-child(3) {
+	grid-area: button_3;
+}
+.workspaceButton:nth-child(4) {
+	grid-area: button_4;
+}
+.workspaceButton:nth-child(5) {
+	grid-area: button_5;
+}
+.workspaceButton:nth-child(6) {
+	grid-area: button_6;
+}
+.workspaceButton:nth-child(7) {
+	grid-area: button_7;
+}
+.workspaceButton:nth-child(8) {
+	grid-area: button_8;
+}
+.workspaceButton:nth-child(9) {
+	grid-area: button_9;
+}
+.workspaceButton:nth-child(10) {
+	grid-area: button_10;
+}
+.workspaceButton:nth-child(11) {
+	grid-area: button_11;
+}
+.workspaceButton:nth-child(12) {
+	grid-area: button_12;
+}
+.workspaceButton:nth-child(13) {
+	grid-area: button_13;
+}
+.workspaceButton:nth-child(14) {
+	grid-area: button_14;
+}
+
+.workspaceButton:hover {
+	background: #7a7a7a;
+	filter: brightness(100%);
+}
+
+.operator {
+	background: #fc7b25;
+}
+
+.operator:hover {
+	background: #fc7b25;
+	filter: brightness(120%);
+}
+
+.clearDefault {
+	text-transform: uppercase;
+	background: #5c0b09;
+}
+
+.clearDefault:hover {
+	background: #ce1913;
+}
+
+.clearActive {
+	text-transform: uppercase;
+	background: #5c0b09;
+	animation: glowing 1500ms infinite;
+}
+
+@keyframes glowing {
+	0% {
+		background: #5c0b09;
+		box-shadow: 0 0 5px #5c0b09;
+	}
+	50% {
+		background: #ce1913;
+		box-shadow: 0 0 20px #ce1913;
+	}
+	100% {
+		background: #5c0b09;
+		box-shadow: 0 0 5px #5c0b09;
+	}
+}
