@@ -76,7 +76,7 @@ export const App = () => {
 			value = value.toString();
 
 			setFieldValue((prevValue) => {
-				if (fieldValue === '+' || fieldValue === '-') {
+				if (fieldValue === '+' || fieldValue === '-' || fieldValue === '0') {
 					return value;
 				}
 
