@@ -1,3 +1,27 @@
+html,
+body {
+	height: 100%;
+}
+
+html {
+	min-width: 320px;
+}
+
+body {
+	background: linear-gradient(33deg, #f78fad, #fdeb82);
+}
+
+#root {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 100%;
+}
+
 .App {
-	text-align: center;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 80px 15px 15px 15px;
 }

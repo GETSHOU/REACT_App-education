@@ -1,0 +1,43 @@
+.profile {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 1170px;
+	min-width: 290px;
+	padding: 20px;
+	background: #ffffff;
+	border-radius: 5px;
+	box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.title {
+	margin-bottom: 50px;
+	font-size: 30px;
+}
+
+.info {
+	display: flex;
+}
+
+.avatar {
+	display: flex;
+	width: 200px;
+	height: 300px;
+	margin-right: 50px;
+	background: rgba(0, 0, 0, 0.2);
+}
+
+.infoList {
+	display: flex;
+}
+
+.infoListTitles {
+	display: flex;
+	flex-direction: column;
+	margin-right: 20px;
+}
+
+.infoListData {
+	display: flex;
+	flex-direction: column;
+}
