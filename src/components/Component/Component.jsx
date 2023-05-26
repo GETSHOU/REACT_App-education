@@ -1,5 +1,7 @@
+import componentStyles from './Component.module.css';
+
 export const Component = (props) => {
 	return (
-		<div>TEST BRANCH</div>
+		<div className={componentStyles.example}>Base Template</div>
 	)
 }

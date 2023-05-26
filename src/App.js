@@ -1,4 +1,3 @@
-import './clearFix.css';
 import './App.css';
 import { Component } from './components/Component/Component';
 
