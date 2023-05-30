@@ -1,0 +1,35 @@
+.fieldWrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 50px;
+}
+
+.field {
+	display: grid;
+	grid-template-rows: 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr;
+	border: 5px solid #ffffff;
+	background: rgba(0, 0, 0, 0.2);
+	box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.cell {
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 80px;
+	height: 80px;
+	padding: 5px 5px 16px 5px;
+	color: #ffffff;
+	font-size: 50px;
+	border: 1px solid #ffffff;
+	text-transform: lowercase;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.cell:hover {
+	background: rgba(0, 0, 0, 0.4);
+}
