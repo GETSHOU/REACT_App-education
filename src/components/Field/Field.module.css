@@ -21,11 +21,11 @@
 	align-items: center;
 	width: 80px;
 	height: 80px;
-	padding: 5px 5px 16px 5px;
+	padding: 5px;
 	color: #ffffff;
 	font-size: 50px;
 	border: 1px solid #ffffff;
-	text-transform: lowercase;
+	text-transform: uppercase;
 	cursor: pointer;
 	transition: all 0.2s ease;
 }
