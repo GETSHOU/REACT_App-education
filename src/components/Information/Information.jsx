@@ -1,20 +1,20 @@
 import PropTypes from 'prop-types';
 import styles from './Information.module.css';
 
-const InformationLayout = (props) => {
+const InformationLayout = ({ status, statusDraw, currentPlayer }) => {
 	return (
 		<div className={styles.information}>
-			{`${props.status}${(props.status !== props.statusDraw) ? props.currentPlayer : ''}`}
+			{`${status}${(status !== statusDraw) ? currentPlayer : ''}`}
 		</div>
 	)
 };
 
-export const Information = (props) => {
+export const Information = ({ status, statusDraw, currentPlayer }) => {
 	return (
 		<InformationLayout
-			status={props.status}
-			statusDraw={props.statusDraw}
-			currentPlayer={props.currentPlayer}
+			status={status}
+			statusDraw={statusDraw}
+			currentPlayer={currentPlayer}
 		/>
 	);
 }

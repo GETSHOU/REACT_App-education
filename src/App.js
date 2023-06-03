@@ -5,33 +5,43 @@ import { Field } from './components/Field/Field.jsx';
 import { Information } from './components/Information/Information.jsx';
 
 const GameLayout = (props) => {
+	const {
+		field,
+		status,
+		setField,
+		checkWin,
+		statusWin,
+		setStatus,
+		statusDraw,
+		firstPlayer,
+		secondPlayer,
+		currentPlayer,
+		handlerRestart,
+		setCurrentPlayer,
+	} = props;
+
 	return (
 		<div className="App">
 			<h1 className={'appTitle'}>Игра "Крестики-нолики"</h1>
 			<Information
-				status={props.status}
-				statusDraw={props.statusDraw}
-				currentPlayer={props.currentPlayer}
+				status={status}
+				statusDraw={statusDraw}
+				currentPlayer={currentPlayer}
 			/>
 			<Field
-				field={props.field}
-				status={props.status}
-				setField={props.setField}
-				checkWin={props.checkWin}
-				statusWin={props.statusWin}
-				setStatus={props.setStatus}
-				statusDraw={props.statusDraw}
-				firstPlayer={props.firstPlayer}
-				secondPlayer={props.secondPlayer}
-				currentPlayer={props.currentPlayer}
-				setCurrentPlayer={props.setCurrentPlayer}
+				field={field}
+				status={status}
+				setField={setField}
+				checkWin={checkWin}
+				statusWin={statusWin}
+				setStatus={setStatus}
+				statusDraw={statusDraw}
+				firstPlayer={firstPlayer}
+				secondPlayer={secondPlayer}
+				currentPlayer={currentPlayer}
+				setCurrentPlayer={setCurrentPlayer}
 			/>
-			<button
-				className="buttonStartOver"
-				onClick={() => {
-					props.handlerRestart();
-				}}
-			>
+			<button className="buttonStartOver" onClick={handlerRestart}>
 				Начать заново
 			</button>
 		</div>

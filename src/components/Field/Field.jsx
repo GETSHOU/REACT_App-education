@@ -2,17 +2,17 @@ import PropTypes from 'prop-types';
 import styles from './Field.module.css';
 
 const FieldLayout = (props) => {
+	const { field, handlerMove } = props;
+
 	return (
 		<div className={styles.fieldWrapper}>
 			<div className={styles.field}>
-				{props.field.map((cellValue, i) => {
+				{field.map((cellValue, i) => {
 					return (
 						<button
 							key={i}
 							className={styles.cell}
-							onClick={() => {
-								props.handlerMove(i, cellValue);
-							}}
+							onClick={() => handlerMove(i, cellValue)}
 						>
 							{cellValue}
 						</button>
@@ -24,40 +24,39 @@ const FieldLayout = (props) => {
 };
 
 export const Field = (props) => {
-	const fieldCopy = [...props.field];
+	const {field, setField, currentPlayer, setCurrentPlayer, firstPlayer, secondPlayer, status, setStatus, statusWin, statusDraw, checkWin } = props;
+	const fieldCopy = [...field];
 
 	const handlerMove = (i, cellValue) => {
-		if (props.status === props.statusWin
-			|| props.status === props.statusDraw
+		if (status === statusWin
+			|| status === statusDraw
 			|| cellValue !== '') {
 			return;
 		}
 
-		fieldCopy[i] = props.currentPlayer;
-		props.setField(fieldCopy);
+		fieldCopy[i] = currentPlayer;
+		setField(fieldCopy);
 
-		if(props.checkWin(fieldCopy, props.currentPlayer)) {
-			props.setStatus(props.statusWin);
-		} else if (!props.checkWin(fieldCopy, props.currentPlayer) && !fieldCopy.includes('')) {
-			props.setStatus(props.statusDraw);
-		}	else if (props.currentPlayer === props.firstPlayer) {
-			props.setCurrentPlayer(props.secondPlayer);
+		if(checkWin(fieldCopy, currentPlayer)) {
+			setStatus(statusWin);
+		} else if (!checkWin(fieldCopy, currentPlayer) && !fieldCopy.includes('')) {
+			setStatus(statusDraw);
+		}	else if (currentPlayer === firstPlayer) {
+			setCurrentPlayer(secondPlayer);
 		}	else {
-			props.setCurrentPlayer(props.firstPlayer);
+			setCurrentPlayer(firstPlayer);
 		}
 	};
 
 	return (
 		<FieldLayout
-			field={props.field}
+			field={field}
 			handlerMove={handlerMove}
-			currentPlayer={props.currentPlayer}
 		/>
 	);
 }
 
 FieldLayout.propTypes = {
 	field: PropTypes.array,
-	handlerMove: PropTypes.func,
-	currentPlayer: PropTypes.string,
+	handlerMove: PropTypes.func
 };
