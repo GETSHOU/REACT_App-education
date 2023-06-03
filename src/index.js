@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './clearFix.css';
 import './index.css';
-import { Game } from './App';
+import { App } from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
-		<Game />
+		<App />
 	</React.StrictMode>,
 );

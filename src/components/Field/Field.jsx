@@ -1,27 +1,5 @@
 import PropTypes from 'prop-types';
-import styles from './Field.module.css';
-
-const FieldLayout = (props) => {
-	const { field, handlerMove } = props;
-
-	return (
-		<div className={styles.fieldWrapper}>
-			<div className={styles.field}>
-				{field.map((cellValue, i) => {
-					return (
-						<button
-							key={i}
-							className={styles.cell}
-							onClick={() => handlerMove(i, cellValue)}
-						>
-							{cellValue}
-						</button>
-							);
-				})}
-			</div>
-		</div>
-	)
-};
+import { FieldLayout } from './FieldLayout';
 
 export const Field = (props) => {
 	const {field, setField, currentPlayer, setCurrentPlayer, firstPlayer, secondPlayer, status, setStatus, statusWin, statusDraw, checkWin } = props;
