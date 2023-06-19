@@ -1,10 +1,11 @@
 import './App.css';
-import { Component } from './components/Component/Component';
+
+import { RegistrationForm } from './components/RegistrationForm/RegistrationForm';
 
 export const App = () => {
 	return (
 		<div className="App">
-			<Component />
+			<RegistrationForm />
 		</div>
 	);
 };
