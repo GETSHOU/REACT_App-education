@@ -1,40 +1,18 @@
+import { forwardRef } from 'react';
 import styles from './RegistrationField.module.css';
-import PropTypes from 'prop-types';
 
-export const RegistrationField = (props) => {
-	const {
-		name,
-		type,
-		value,
-		onBlur,
-		onChange,
-		labelName,
-		placeholder,
-	} = props;
-
+export const RegistrationField = forwardRef(({error, ...rest}, ref) => {
 	return (
 		<>
-			<label htmlFor={name} className={styles.label}>{labelName}</label>
+			<label htmlFor={rest.name} className={styles.label}>{rest.label}</label>
 			<input
-				id={name}
-				name={name}
-				type={type}
-				value={value}
-				onBlur={onBlur}
-				onChange={onChange}
-				className={styles.input}
-				placeholder={placeholder}
+				{...rest}
+				ref={ref}
+				id={rest.name}
+				className={error ? styles.inputError : styles.input}
 			/>
+			{error && <div className={styles.errorMessage}>{error}</div>}
 		</>
 	)
-}
+});
 
-RegistrationField.propTypes = {
-	name: PropTypes.string.isRequired,
-	type: PropTypes.string.isRequired,
-	value: PropTypes.string.isRequired,
-	onBlur: PropTypes.func.isRequired,
-	onChange: PropTypes.func.isRequired,
-	labelName: PropTypes.string,
-	placeholder: PropTypes.string,
-};

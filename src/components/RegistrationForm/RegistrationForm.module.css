@@ -10,13 +10,13 @@
 
 .titleBlock {
 	padding: 20px;
-	border-bottom: 1px solid #b7b7b7;
 }
 
 .title {
 	font-size: 28px;
 	font-weight: bold;
 	text-align: center;
+	color: #ff9913;
 }
 
 .form {
@@ -45,7 +45,7 @@
 	background: #fdab41;
 	font-size: 1rem;
 	color: #ffffff;
-	transition: all 0.2s ease;
+	transition: all 0.3s ease;
 }
 
 .button:hover {
@@ -58,5 +58,9 @@
 }
 
 .button:focus {
-	border: 2px solid #717171;
+	background: #009611;
+}
+
+.button:focus:hover {
+	background: #00c517;
 }

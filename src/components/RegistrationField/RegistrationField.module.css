@@ -3,25 +3,35 @@
 	font-size: 1rem;
 }
 
-.input {
+.input,
+.inputError {
 	height: 40px;
 	padding: 5px;
-	border: 1px solid #b7b7b7;
+	border: 2px solid #c6c6c6;
 	border-radius: 3px;
 	font-size: 1rem;
+	transition: all 0.3s ease;
+	background: transparent;
+}
+.inputError {
+	border: 2px solid #e10000;
+}
+/* .inputSuccess {
+	border: 2px solid #00c517;
+} */
+
+.input:focus {
+	border: 2px solid #ff9913;
+	transition: all 0.3s ease;
 }
 
 .input::placeholder {
 	color: #b7b7b7;
 }
 
-.validationError {
+.errorMessage {
 	margin-top: 10px;
 	color: #e10000;
 	font-size: 14px;
 	font-weight: bold;
-}
-
-.input:focus {
-	border: 2px solid #717171;
 }

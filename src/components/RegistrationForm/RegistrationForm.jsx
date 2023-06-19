@@ -1,75 +1,96 @@
-import styles from './RegistrationForm.module.css'
+import * as yup from 'yup';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useRef, useEffect } from 'react';
-import { useInput } from '../../hooks/useInput';
-import { RegistrationField } from '../RegistrationField/RegistrationField';
-import { sendRegistrationRequest } from '../../js/requests/sendRegistrationRequest';
+
+import styles from './RegistrationForm.module.css';
+import { RegistrationField } from '../RegistrationField/RegistrationField'
+
+const EMAIL_REGEXP = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+const fieldsScheme = yup
+	.object({
+		email: yup.string()
+							.required('Поле не должно быть пустым!')
+							.matches(
+								EMAIL_REGEXP,
+								'Название почты введено некорректно!'
+							),
+		password: yup.string()
+								.required('Поле не должно быть пустым!')
+								.min(5, 'Длина пароля должна быть не менее 5 символов!')
+								.max(15, 'Длина пароля должна быть не более 15 символов!')
+								.matches(/[0-9]+/, 'В пароле должна быть минимум 1 цифра!')
+								.matches(/[a-zA-z]+/, 'В пароле должна быть минимум 1 буква!')
+								.matches(/\W+/, 'В пароле должнен быть минимум 1 спецсимвол!'),
+		repeatPassword: yup.string()
+											 .required('Поле не должно быть пустым!')
+											 .oneOf([yup.ref('password'), null], 'Пароли не совпадают'),
+	})
+	.required();
 
 export const RegistrationForm = () => {
-	const email = useInput('', {isEmail: true});
-	const password = useInput('', {passwordLength: {minLength: 5, maxLength: 15}});
-	const repeatPassword = useInput('', {isPassword: password.value});
+	const {
+		register,
+		handleSubmit,
+		formState: { errors, isValid },
+	} = useForm({
+		defaultValues: {
+			email: '',
+			password: '',
+			repeatPassword: ''
+		},
+		resolver: yupResolver(fieldsScheme),
+		mode: 'all',
+	});
+
+	const onSubmit = (formData) => {
+		console.log(formData);
+	};
 
 	const buttonRef = useRef();
 
-	useEffect(() => {
-		if (email.inputValid || password.inputValid || repeatPassword.inputValid) {
-			buttonRef.current.focus();
-		}
-	}, [email, password, repeatPassword]);
-
-	const sendDataRegistration = (e) => {
-		e.preventDefault();
-		sendRegistrationRequest({
-			email: email.value,
-			password: password.value,
-			repeatPassword: repeatPassword.value,
-		});
-	};
+	useEffect(() => { if (isValid) buttonRef.current.focus(); }, [isValid]);
 
 	return (
 		<div className={styles.block}>
 			<div className={styles.titleBlock}>
 				<h1 className={styles.title}>Регистрация</h1>
 			</div>
-			<form className={styles.form} onSubmit={sendDataRegistration}>
+			<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
 				<div className={styles.row}>
 					<RegistrationField
 						name='email'
 						type='text'
-						labelName='Почта'
 						placeholder='почта'
-						value={email.value}
-						onChange={(e) => email.handleChange(e)}
-						onBlur={(e) => email.handleBlur(e)}
+						label='Почта'
+						{...register('email')}
+						error={errors.email?.message}
 					/>
-					{(email.focused && email.emailError) && <div style={{color: 'red'}}>{email.error}</div>}
 				</div>
 				<div className={styles.row}>
 					<RegistrationField
 						name='password'
-						type='password'
-						labelName='Пароль'
+						type='text'
 						placeholder='пароль'
-						value={password.value}
-						onChange={(e) => password.handleChange(e)}
-						onBlur={(e) => password.handleBlur(e)}
+						label='Пaроль'
+						{...register('password')}
+						error={errors.password?.message}
 					/>
-					{(password.focused && password.passwordError) && <div style={{color: 'red'}}>{password.error}</div>}
 				</div>
 				<div className={styles.row}>
 					<RegistrationField
 						name='repeatPassword'
-						type='password'
-						labelName='Повторить пароль'
-						placeholder='повторить пароль'
-						value={repeatPassword.value}
-						onChange={(e) => repeatPassword.handleChange(e)}
-						onBlur={(e) => repeatPassword.handleBlur(e)}
+						type='text'
+						placeholder='Повторите пароль'
+						label='Повторите пароль'
+						{...register('repeatPassword')}
+						error={errors.repeatPassword?.message}
 					/>
-					{(repeatPassword.focused && repeatPassword.repeatPasswordError) && <div style={{color: 'red'}}>{repeatPassword.error}</div>}
 				</div>
-				<button
-					type="submit" className={styles.button} ref={buttonRef} disabled={!email.inputValid || !password.inputValid || !repeatPassword.inputValid}>Submit</button>
+				<button type="submit" className={styles.button} disabled={!isValid} ref={buttonRef}>
+					Зарегистрироваться
+				</button>
 			</form>
 		</div>
 	)
