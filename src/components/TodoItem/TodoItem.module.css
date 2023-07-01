@@ -1,0 +1,12 @@
+.item {
+	display: flex;
+	margin-top: 20px;
+	padding: 10px 15px;
+	background: #ffffff;
+	border-radius: 5px;
+	box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.item:first-child {
+	margin-top: 0;
+}
