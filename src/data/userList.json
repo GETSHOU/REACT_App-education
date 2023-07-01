@@ -1,0 +1,30 @@
+{
+	"userList": [
+		{
+			"id": 1,
+			"nickName": "Getshou",
+			"name": "Сергей",
+			"lastname": "Борисов",
+			"age": 31,
+			"email": "BorisovSF.mailbox@gmail.com",
+			"address": {
+				"country": "РФ",
+				"city": "Москва"
+			},
+			"avatar": ""
+		},
+		{
+			"id": 2,
+			"nickName": "Vano",
+			"name": "Иван",
+			"lastname": "Иванов",
+			"age": 25,
+			"email": "Ivan.mailbox@gmail.com",
+			"address": {
+				"country": "РФ",
+				"city": "Санкт-Петербург"
+			},
+			"avatar": ""
+		}
+	]
+}
