@@ -4,15 +4,8 @@ import styles from './Todos.module.css';
 import { TodoList } from '../TodoList/TodoList';
 import { TodoListTools } from '../TodoListTools/TodoListTools';
 import { TodoSearchTools } from '../TodoSearchTools/TodoSearchTools';
-
-// import { API_TODOS } from '../../api/api';
-// json-server --watch ./src/data/todoList.json --delay 500 --port 3004
-
-// ref - ссылка на базу банных
-// onValue - функция-подписчик на изменение значения в базе данных
 import { ref, set, push, remove, onValue } from 'firebase/database';
 import { db } from '../../firebase';
-
 
 export const Todos = () => {
 	const [isLoading, setIsLoading] = useState(true);
@@ -36,10 +29,9 @@ export const Todos = () => {
 	};
 
 	useEffect(() => {
-		const todosDbRef = ref(db, 'todos'); // получить доступ к таблице todos
+		const todosDbRef = ref(db, 'todos');
 
-		// return позволит отписываться от подписчика onValue каждый раз, когда наш компонент будет удаляться
-		return onValue(todosDbRef, (snapshop) => { // слепок от данных, которые приходит из таблицы
+		return onValue(todosDbRef, (snapshop) => {
 			const loadedTodos = snapshop.val() || {};
 
 			setDataToDoList(loadedTodos);
@@ -76,21 +68,11 @@ export const Todos = () => {
 		})
 	};
 
-	const handleAddTodo = (payload) => {
-		addTodo(payload)
-	};
-	const handleDeleteTodo = (id) => {
-		deleteTodo(id);
-	};
-	const handleSearchQuery = ({target}) => {
-		setSearchQuery(target.value)
-	};
-	const handleSort = () => {
-		setSorted(true);
-	};
-	const handleClearField = () => {
-		setSearchQuery('');
-	};
+	const handleSort = () => setSorted(true);
+	const handleAddTodo = (payload) => addTodo(payload);
+	const handleClearField = () => setSearchQuery('');
+	const handleDeleteTodo = (id) => deleteTodo(id);
+	const handleSearchQuery = ({target}) => setSearchQuery(target.value);
 
 	return (
 		<div className={styles.wrapper}>
@@ -121,9 +103,7 @@ export const Todos = () => {
 			<TodoList
 				sorted={sorted}
 				isLoading={isLoading}
-				searchQuery={searchQuery}
 				valueSearch={valueSearch}
-				dataToDoList={dataToDoList}
 				sendUpdatedTodo={sendUpdatedTodo}
 				handleDeleteTodo={handleDeleteTodo}
 				todosWithoutSorting={todosWithoutSorting}
