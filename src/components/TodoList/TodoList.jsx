@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import styles from './TodoList.module.css';
 import { Loader } from '../Loader/Loader';
 import { TodoItem } from '../TodoItem/TodoItem';
