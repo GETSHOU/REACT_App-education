@@ -29,6 +29,10 @@
 	transition: all 0.2s ease;
 }
 
+.toolsWrapper:nth-child(2) {
+	margin-top: 0;
+}
+
 .toolsWrapper:focus-within {
 	box-shadow: 2px 5px 8px 0 rgba(0, 0, 0, 0.2);
 }
