@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import styles from './TodoItem.module.css';
 import { TodoItemTools } from '../TodoItemTools/TodoItemTools';
 
-export const TodoItem = ({id, text, handleDelete, sendUpdatedTodo}) => {
+export const TodoItem = ({id, text, handleDeleteTodo, sendUpdatedTodo}) => {
 	const [isEdit, setEdit] = useState(false);
 	const [fieldValue, setFieldValue] = useState(text);
 	const [fieldValueChanged, setFieldValueChanged] = useState(false);
@@ -59,9 +59,9 @@ export const TodoItem = ({id, text, handleDelete, sendUpdatedTodo}) => {
 				isEdit={isEdit}
 				fieldValue={fieldValue}
 				handleEdit={handleEdit}
-				handleDelete={handleDelete}
 				handleCancel={handleCancel}
 				handleUpdate={handleUpdate}
+				handleDeleteTodo={handleDeleteTodo}
 				fieldValueChanged={fieldValueChanged}
 			/>
 		</li>

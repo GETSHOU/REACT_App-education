@@ -17,11 +17,11 @@
 	border-radius: 0 5px 5px 0;
 }
 
-.addButton {
+.clearButton {
 	background-color: rgb(45, 189, 72);
 }
 
-.addButton:hover {
+.clearButton:hover {
 	background-color: rgb(85, 215, 109);
 }
 

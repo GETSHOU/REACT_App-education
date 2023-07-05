@@ -1,39 +1,38 @@
+import { useState, useEffect } from 'react';
 import styles from './TodoList.module.css';
 import { Loader } from '../Loader/Loader';
 import { TodoItem } from '../TodoItem/TodoItem';
 
 export const TodoList = ({
+	sorted,
 	isLoading,
-	dataToDoList,
-	handleDelete,
-	sendUpdatedTodo
+	valueSearch,
+	sendUpdatedTodo,
+	handleDeleteTodo,
+	todosWithoutSorting
 }) => {
+	let renderTodos = sorted
+		? [...todosWithoutSorting].sort((a, b) => a[1].text.localeCompare(b[1].text))
+		: todosWithoutSorting;
+
 	return (
 		<div className={styles.wrapper}>
 			<ul className={styles.list}>
-				{dataToDoList.length > 0
-					? <>
-							{isLoading
-								? <Loader />
-								: dataToDoList.map((todo) => {
-
-									return (
-										<TodoItem
-											key={todo.id}
-											handleDelete={handleDelete}
-											sendUpdatedTodo={sendUpdatedTodo}
-											{...todo}
-										/>
-									)
-								})
-							}
-						</>
-					: <>
-							{isLoading
-								? <Loader />
-								: <h2 className={styles.message}>На данный момент нет текущих задач</h2>
-							}
-						</>
+				{isLoading
+					? <Loader />
+					: renderTodos
+						.filter(([, task]) => task.text.toLowerCase().includes(valueSearch.toLowerCase()))
+						.map(([id, {...todo}]) => {
+						return (
+							<TodoItem
+								key={id}
+								id={id}
+								{...todo}
+								sendUpdatedTodo={sendUpdatedTodo}
+								handleDeleteTodo={handleDeleteTodo}
+							/>
+						)
+					})
 				}
 			</ul>
 		</div>
