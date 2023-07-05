@@ -39,6 +39,9 @@ export const Todos = () => {
 					return response.json()
 				})
 				.then((data) => setDataToDoList(data))
+				.catch((error) => {
+					throw new Error(error);
+				})
 				.finally(() => setIsLoading(false));
 		}
 
@@ -51,6 +54,9 @@ export const Todos = () => {
 				.then((response) => response.json())
 				.then((data) => {
 					setDataToDoList(data);
+				})
+				.catch((error) => {
+					throw new Error(error);
 				})
 		}
 
@@ -100,8 +106,25 @@ export const Todos = () => {
 		}
 	};
 
+	const sortingTodos = (sortByField) => {
+		// Нет проверки sortByField
+		const fetchData = async () => {
+			await fetch(`${API_TODOS}?_sort=${sortByField}&_order=asc`)
+				.then((response) => response.json())
+				.then((data) => {
+					setDataToDoList(data);
+				})
+				.catch((error) => {
+					throw new Error(error);
+				})
+		}
+
+		fetchData();
+	};
+
 	const handleAddTodo = (payload) => addTodo(payload);
 	const handleSearchQuery = ({target}) => setSearchQuery(target.value);
+	const handleSort = (sortByField) => sortingTodos(sortByField);
 
 	return (
 		<div className={styles.wrapper}>
@@ -122,6 +145,7 @@ export const Todos = () => {
 					fieldValueChanged={fieldValueChanged}
 				/>
 			</div>
+			<button className={styles.sortButton} onClick={() => handleSort('text')}>Sort by a-z</button>
 			<div className={styles.divider}></div>
 			<TodoList
 				isLoading={isLoading}
