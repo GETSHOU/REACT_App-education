@@ -1,10 +1,10 @@
 import './App.css';
-import { TodoList } from './components/TodoList/TodoList';
+import { Todos } from './components/Todos/Todos';
 
 export const App = () => {
 	return (
 		<div className="App">
-			<TodoList />
+			<Todos />
 		</div>
 	);
 };

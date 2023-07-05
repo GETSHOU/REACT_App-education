@@ -3,18 +3,9 @@
 	flex-direction: column;
 }
 
-.title {
-	font-size: 40px;
-	text-align: center;
-	color: floralwhite;
-	font-weight: bold;
-	text-shadow: 4px 4px #5aa1bf;
-}
-
 .list {
 	display: flex;
 	flex-direction: column;
-	max-width: 500px;
 	margin-top: 50px;
 }
 
@@ -22,4 +13,10 @@
 	text-align: center;
 	font-size: 50px;
 	color: rgb(146, 0, 0);
+}
+
+.message {
+	text-align: center;
+	color: floralwhite;
+	font-size: 2rem;
 }
