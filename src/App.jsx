@@ -1,5 +1,5 @@
-import styles from './App.module.css';
 import { Todos } from './components/Todos/Todos';
+import styles from './App.module.css';
 
 export const App = () => {
 	return (

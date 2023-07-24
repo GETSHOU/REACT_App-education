@@ -1,38 +1,26 @@
-import styles from './TodoList.module.css';
-import { Loader } from '../Loader/Loader';
+import { useTodos } from '../../hooks/useTodos';
+import { Loader } from "../Loader/Loader";
 import { TodoItem } from '../TodoItem/TodoItem';
+import styles from './TodoList.module.css';
 
-export const TodoList = ({
-	isLoading,
-	dataToDoList,
-	handleDelete,
-	sendUpdatedTodo
-}) => {
+export const TodoList = () => {
+	const { dataTodoList, isLoading } = useTodos();
+
 	return (
 		<div className={styles.wrapper}>
 			<ul className={styles.list}>
-				{dataToDoList.length > 0
-					? <>
-							{isLoading
-								? <Loader />
-								: dataToDoList.map((todo) => {
-
-									return (
-										<TodoItem
-											key={todo.id}
-											handleDelete={handleDelete}
-											sendUpdatedTodo={sendUpdatedTodo}
-											{...todo}
-										/>
-									)
-								})
-							}
-						</>
+				{ isLoading
+					? <Loader />
 					: <>
-							{isLoading
-								? <Loader />
-								: <h2 className={styles.message}>На данный момент нет текущих задач</h2>
-							}
+							{dataTodoList.map((todo) => {
+								return (
+									<TodoItem
+										key={todo.id}
+										id={todo.id}
+										currentText={todo.text}
+									/>
+								)}
+							)}
 						</>
 				}
 			</ul>

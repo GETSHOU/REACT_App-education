@@ -1,12 +1,15 @@
+import { useTodos } from '../../hooks/useTodos';
 import styles from './TodoSearch.module.css';
 
-export const TodoSearch = ({searchQuery, handleSearchQuery}) => {
+export const TodoSearch = () => {
+	const { fieldValueSearchQuery, handleSearchQuery } = useTodos();
+
 	return (
 		<input
 			type="text"
 			className={`${styles.field} ${styles.fieldSearch}`}
 			placeholder='Search...'
-			value={searchQuery}
+			value={fieldValueSearchQuery}
 			onChange={handleSearchQuery}
 		/>
 	)
